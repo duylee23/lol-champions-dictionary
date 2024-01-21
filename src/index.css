@@ -19,3 +19,9 @@ code {
 .active{
   color: #d3a850;
 }
+
+input:focus {
+  border-bottom: 1px solid #d3a850; /* Change the color to your preferred color */
+  outline: none; /* Remove default outline */
+  color: #d3a850;
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import bg from '../assets/img/bg.jpg'
 import ChampionItem from './ChampionItem'
 import SearchBar from './SearchBar'
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,13 +25,44 @@ const Champions = () => {
 
   //using Redux (better)
   const dispatch = useDispatch()
-  const champions = useSelector((state) => state.champions.championList)
-  const selectedChampions = useSelector((state) => state.champions.selectedPosition)
+  const championsSelector =  useSelector((state) => state.champions.championList)
+  const selectedPosition = useSelector((state) => state.champions.selectedPosition)
+  const searchTerm = useSelector((state) => state.champions.searchTerm)
+  const [champions,setChampions] = useState([])
 
+  //render all champions
   useEffect(() => {
     dispatch(fetchChampions())
-  }, [dispatch])
+    setChampions(championsSelector)
+  }, [])
+
+  //render champions by position
+  useEffect(() => {
+      if (selectedPosition !== 'ALL') {
+        setChampions(championsSelector.filter((champion) => {
+        if (champion && champion.tags && Array.isArray(champion.tags)) {
+          return champion.tags.some((tag) => tag.toLowerCase() === selectedPosition.toLowerCase());
+        } return false;
+        }));
+      } else {
+        setChampions(championsSelector)
+      } 
+  }, [selectedPosition])
+
+  //render champions by name
+  useEffect(() => {
+    setChampions(championsSelector.filter((champion) => {
+      if(champion && champion.name) {
+        return champion.name.toLowerCase().includes(searchTerm.toLowerCase())
+      }
+    }))
+  }, [searchTerm])
+
+  //render champions by difficulty
   
+
+  
+
 
   return (
     <div className='w-full'>
@@ -44,7 +74,7 @@ const Champions = () => {
       <SearchBar/>
       <div className='mt-[40px] p-10'>        
         <ul className='flex gap-2 flex-wrap w-full justify-between '>
-          {champions.map((champ) => (
+          {champions?.map((champ) => (
             <ChampionItem key= {champ.key} data={champ}/>
           ))}
         </ul>
