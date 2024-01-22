@@ -8,7 +8,6 @@ export const fetchChampions = createAsyncThunk('champions/fetchChampions', async
   }
   const data = await res.json();
   const championArray = Object.values(data.data);
-
   return championArray;
 });
 
@@ -20,6 +19,7 @@ const championsSlice = createSlice({
     championList: [],
     selectedPosition: '',
     searchTerm: '',
+    difficulty: '',
     loading: false,
     error: null,
   },
@@ -29,6 +29,9 @@ const championsSlice = createSlice({
     },
     setSearchTerm: (state, action) => {
       state.searchTerm = action.payload
+    },
+    chooseDifficulty : (state, action) => {
+      state.difficulty = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -47,5 +50,5 @@ const championsSlice = createSlice({
   },
 });
 
-export const {setSelectedPosition, setSearchTerm} = championsSlice.actions
+export const {setSelectedPosition, setSearchTerm, chooseDifficulty} = championsSlice.actions
 export default championsSlice.reducer;

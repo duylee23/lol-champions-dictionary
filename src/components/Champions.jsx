@@ -3,6 +3,8 @@ import ChampionItem from './ChampionItem'
 import SearchBar from './SearchBar'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChampions } from '../redux/championsSlice';
+import { Link } from 'react-router-dom'
+
 const Champions = () => {
 
  
@@ -28,40 +30,63 @@ const Champions = () => {
   const championsSelector =  useSelector((state) => state.champions.championList)
   const selectedPosition = useSelector((state) => state.champions.selectedPosition)
   const searchTerm = useSelector((state) => state.champions.searchTerm)
+  const difficulty = useSelector((state) => state.champions.difficulty)
   const [champions,setChampions] = useState([])
-
+  
   //render all champions
   useEffect(() => {
-    dispatch(fetchChampions())
-    setChampions(championsSelector)
-  }, [])
+    dispatch(fetchChampions());
+  }, [dispatch]);
 
-  //render champions by position
+  // Render champions by position and search term
   useEffect(() => {
-      if (selectedPosition !== 'ALL') {
-        setChampions(championsSelector.filter((champion) => {
-        if (champion && champion.tags && Array.isArray(champion.tags)) {
-          return champion.tags.some((tag) => tag.toLowerCase() === selectedPosition.toLowerCase());
-        } return false;
-        }));
-      } else {
-        setChampions(championsSelector)
-      } 
-  }, [selectedPosition])
+    // Ensure champions are fetched before setting them
+    if (championsSelector.length > 0) {
+      let filteredChampions = championsSelector;
 
-  //render champions by name
-  useEffect(() => {
-    setChampions(championsSelector.filter((champion) => {
-      if(champion && champion.name) {
-        return champion.name.toLowerCase().includes(searchTerm.toLowerCase())
+      // Filter by position
+      if (selectedPosition !== 'ALL' && selectedPosition !== '') {
+        filteredChampions = filteredChampions.filter((champion) =>
+          champion.tags.some((tag) => tag.toLowerCase() === selectedPosition.toLowerCase())
+        );
       }
-    }))
-  }, [searchTerm])
 
-  //render champions by difficulty
+      // Filter by name
+      filteredChampions = filteredChampions.filter((champion) =>
+        champion.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      //filter by difficulty
+      switch (difficulty) {
+        case 'Easy':
+          filteredChampions = filteredChampions.filter((champion) => 
+            champion.info.difficulty >= 0 && champion.info.difficulty <= 3
+          );
+          break;
+        case 'Medium':
+          filteredChampions = filteredChampions.filter((champion) => 
+            champion.info.difficulty >= 4 && champion.info.difficulty <= 6
+          );
+          break;
+        case 'Hard':
+          filteredChampions = filteredChampions.filter((champion) => 
+            champion.info.difficulty >= 7 && champion.info.difficulty <= 9
+          );
+          break;
+        default:
+          // Handle the default case if necessary
+      }
+
+
+
+      // Set the filtered champions
+      setChampions(filteredChampions);
+    }
+  }, [championsSelector, selectedPosition, searchTerm, difficulty]);
+
   
 
-  
+
 
 
   return (
@@ -74,9 +99,9 @@ const Champions = () => {
       <SearchBar/>
       <div className='mt-[40px] p-10'>        
         <ul className='flex gap-2 flex-wrap w-full justify-between '>
-          {champions?.map((champ) => (
-            <ChampionItem key= {champ.key} data={champ}/>
-          ))}
+          {champions?.map((champ) => (        
+              <ChampionItem key= {champ.key} data={champ}/>
+            ))}
         </ul>
       </div>
     </div>

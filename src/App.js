@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage";
 import Champions from "./components/Champions";
 import Collection from "./components/Collection";
 import { Routes, Route } from "react-router-dom";
+import ChampionInfo from "./components/ChampionInfo";
 function App() {
   return (
     <div className="select-none">
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element= {<HomePage/>}/>
         <Route path="/champions" element= {<Champions/>}/>
+        <Route path="/champion-info" element = {<ChampionInfo/>} />
         <Route path="/collection" element= {<Collection/>}/>
       </Routes>
       <Footer/>
