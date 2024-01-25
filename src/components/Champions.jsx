@@ -3,7 +3,6 @@ import ChampionItem from './ChampionItem'
 import SearchBar from './SearchBar'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchChampions } from '../redux/championsSlice';
-import { Link } from 'react-router-dom'
 
 const Champions = () => {
 
@@ -93,8 +92,8 @@ const Champions = () => {
     <div className='w-full'>
       <div className='flex flex-col justify-center items-center mt-[90px] '>
         <h2 className='text-[50px] uppercase'>Choose your</h2>
-        <h2 className='text-[70px] uppercase'>Champion</h2>
-        <h2 className='italic'>With more than 140 champions, you’ll find the perfect match for your playstyle. Master one, or master them all.</h2>
+        <h2 className='text-[80px] uppercase text-[#08d7f7] italic'>Champion</h2>
+        <h2 className='italic text-[#d3a850]'>With more than 140 champions, you’ll find the perfect match for your playstyle. Master one, or master them all.</h2>
       </div>
       <SearchBar/>
       <div className='mt-[40px] p-10'>        

@@ -47,7 +47,7 @@ const SearchBar = () => {
 
   return (
     <div className='p-10'>
-        <div className='border flex justify-between h-[50px]'>
+        <div className='border-[#08d7f7] border flex justify-between h-[50px]'>
             <div className='w-[10%] items-center justify-center flex hover:cursor-pointer
                             group border-r-[1px]
                             '>

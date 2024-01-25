@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const ChampionItem = (props) => {
-    const {data} = props
+  const {data} = props
   return (
     
     <div className='border-4 rounded border-[#061c25] w-[15%] mt-12 relative h-[500px] overflow-hidden group hover:border-[#13889c] duration-500 ease-in-out '>
