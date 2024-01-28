@@ -5,6 +5,8 @@ import Champions from "./components/Champions";
 import Collection from "./components/Collection";
 import ChampionInfo from "./components/ChampionInfo";
 import { Routes, Route } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 function App() {
   return (
     <div className="select-none">
