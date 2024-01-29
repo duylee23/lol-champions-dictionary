@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Slider from "react-slick";
 
 const ChampionSkins = (props) => {
-
+  const [selectedSkin, setSelectedSkin] = useState(0)
   const {champion} = props
   const sliderRef = React.useRef(null);
   var settings = {
@@ -11,7 +11,8 @@ const ChampionSkins = (props) => {
     verticalSwiping: true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    beforeChange: (current, next) => setSelectedSkin(next)
   };
 
   const handleItemClick = (index) => {
@@ -21,8 +22,10 @@ const ChampionSkins = (props) => {
   };
 
   return (
-    <div className='h-[800px] text-white'>
-      <div className='flex flex-col bg-blue-500 pl-10 w-[35%] h-full '>
+    <div className='h-[800px] text-white' 
+    style={{ background: `url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion?.name}_${champion?.skins?.[selectedSkin]?.num}.jpg) center/cover no-repeat` }}
+    >
+      <div className='flex flex-col pl-10 w-[35%] h-full border'>
         <span className='uppercase italic font-bold text-[50px]'>Available<br/>Skins</span>
         <Slider  ref={sliderRef}  {...settings} className='h-full'>     
         { champion?.skins?.map( (skin, index) => (
