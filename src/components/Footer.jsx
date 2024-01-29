@@ -4,10 +4,10 @@ const Footer = () => {
   return (
     <div className='flex flex-col justify-center items-center gap-8 text-white bg-[#000] bottom-0 w-full p-8 z-20'>
       <div className='flex gap-5'>
-        <div className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-facebook "></i></div>
-        <div className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-instagram "></i></div>
-        <div className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-github "></i></div>
-        <div className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-threads "></i></div>
+        <a target='_blank' href='https://www.facebook.com/duymeaNingless.23' className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-facebook "></i></a>
+        <a target='_blank' href='https://www.instagram.com/duy_le23/' className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-instagram "></i></a>
+        <a target='_blank' href='https://github.com/duylee23' className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-github "></i></a>
+        <a target='_blank' href='https://www.threads.net/@duy_le23' className='px-[10px] py-[5px] rounded-[20px] bg-[#343434] hover:text-[#d3a850] text-[1.2rem] cursor-pointer '><i className="fa-brands fa-threads "></i></a>
       </div>
 
       <div>

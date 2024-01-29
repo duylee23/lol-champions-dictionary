@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ChampionAbilitiy from './ChampionAbilitiy'
 import ChampionSkins from './ChampionSkins'
 
 const ChampionInfo = () => {
   const [champion, setChampion] = useState({})
   const championId = useParams()
-  
+  const navigate = useNavigate()
+  console.log(champion)
   useEffect(() => {
     const fetchApi = async (id) => {
       try{
@@ -22,10 +23,14 @@ const ChampionInfo = () => {
     }
     fetchApi(championId.id)
   }, [championId.id])
+
+  const handleGoBack = () => {
+    navigate('/champions')
+  }
   
   return (
-    <div className='h-[300vh] w-full bg-red text-red-500 mt-[90px] flex flex-col justify-center items-center bg-[#0c131f] flex flex-col items-center justify-between'>
-      <div className=' w-[70%] border mt-[24px]'>
+    <div className='h-[400vh] w-full bg-red text-red-500 mt-[90px] flex flex-col gap-80 flex flex-col items-center bg-[#0c131f] '>
+      <div className=' w-[70%] mt-[24px] '>
         <div className='relative'>
           <img src={`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championId.id}_0.jpg`}
             className=' w-full'
@@ -42,24 +47,34 @@ const ChampionInfo = () => {
                 <div>
                   Position: {champion?.tags?.join(', ')}
                 </div>
-                <div>
-                  Difficulty: {champion?.info?.difficulty} 
-                </div>
+            <div>
+              Difficulty: {
+                0 <= +champion?.info?.difficulty && +champion?.info?.difficulty <= 3
+                  ? 'Easy'
+                  : 4 <= +champion?.info?.difficulty && +champion?.info?.difficulty <= 6
+                    ? 'Medium'
+                    : 'Hard'
+              }
+            </div>
               </div>
               <div className='flex-1'>
                 {champion.lore}
               </div>
           </div>
       </div>
-
-      <div className='w-[70%] flex flex-col h-[600px]'>
+    
+      <div className='w-[70%] flex flex-col h-[600px] '>
         <h2 className='uppercase font-bold text-[80px] italic text-center text-white mb-[40px]'>Abilities</h2>
         <ChampionAbilitiy champion = {champion} />
       </div>
 
-      <div className='border border-blue-500 w-[70%] mb-[200px]'>
+      <div className='w-[70%] mb-[200px]'>
           <ChampionSkins champion = {champion} />
       </div>
+
+      <div className=' rounded fixed top-100 mt-5 right-20 text-white p-2 bg-[#d3a850] duration-300 ease-in-out hover:bg-[#08d7f7] cursor-pointer text-center'
+          onClick={handleGoBack}
+      >All champions</div>
 
     </div>
   )

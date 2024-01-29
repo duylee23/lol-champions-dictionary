@@ -17,12 +17,12 @@ const Header = () => {
           <li>
             <NavLink className='font-bold' to='/champions'>
                 CHAMPIONS
-              </NavLink>
+            </NavLink>
           </li>
           <li>
             <NavLink className='font-bold' to='/collection'>
                 COLLECTION
-              </NavLink>  
+            </NavLink>  
           </li>
         </ul>
     </div>

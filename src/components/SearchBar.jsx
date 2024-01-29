@@ -92,7 +92,7 @@ const SearchBar = () => {
                             <i className="fa-solid fa-diamond text-[#e1f7fc]"></i>
                         </div>
                         <div className='hover:bg-[#f5f5f5] transition duration-300 ease flex items-center gap-3 justify-center w-full  h-ful p-2'  onClick={() => handleChooseDifficulty('Medium')}>
-                            <i className="fa-solid fa-diamond text-[#08d7f7] "></i>
+                            <i className="fa-solid fa-diamond text-[#08d7f7]"></i>
                             <i className="fa-solid fa-diamond text-[#08d7f7]"></i>
                             <i className="fa-solid fa-diamond text-[#e1f7fc]"></i>
                         </div>

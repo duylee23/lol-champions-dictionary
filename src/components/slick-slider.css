@@ -1,0 +1,39 @@
+/* YourComponent.css */
+
+.slider-container {
+    display: flex;
+    gap: 10px; /* Adjust the gap as needed */
+    overflow: hidden;
+    align-items: center;
+  }
+  
+  .slider-item {
+    flex: 0 0 auto; /* Maintain the size of each item */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 120px; /* Add any additional styling */
+}
+
+.slider-item:hover{
+    opacity: 100;
+    transition: 0.2 ease;
+    
+  }
+  
+  .slider-image {
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    object-fit: cover;
+  }
+  
+  .slider-text {
+    margin-top: 5px; /* Adjust the margin as needed */
+  }
+
+  .active-slide{
+    opacity: 100;
+    color: #fff;
+  }
+  
